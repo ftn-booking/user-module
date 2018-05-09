@@ -1,0 +1,14 @@
+{
+	"name": "user-module",
+	"version": "1.0.0",
+	"description": "User module of ftn-booking",
+	"main": "main.js",
+	"scripts": {
+		"start": "node main.js"
+	},
+	"author": "ftn-booking",
+	"license": "GPL-3.0-or-later",
+	"dependencies": {
+		"express": "^4.16.3"
+	}
+}
