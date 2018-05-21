@@ -35,9 +35,9 @@ angular.module('app')
 				template: '<h1>Link B</h1>'
 			})
 			.state({
-				name: 'linkC',
-				url: '/link-c',
-				template: '<h1>Link C</h1>'
+				name: 'authentication',
+				url: '/authentication',
+				component: 'myAuthentication'
 			})
 			.state({
 				name: 'error',
@@ -48,4 +48,13 @@ angular.module('app')
 		$urlRouterProvider
 			.when('', '/')
 			.otherwise('/error');
+	})
+	.run(function($rootScope, AuthenticationService) {
+		AuthenticationService.getCurrentUser().then(
+			(response) => {
+				$rootScope.user = response.data;
+			},
+			() => {
+				$rootScope.user = null;
+			});
 	});

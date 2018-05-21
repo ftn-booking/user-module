@@ -1,0 +1,18 @@
+'use strict';
+
+angular.module('authentication.login')
+	.component('myLogin', {
+		templateUrl: '/part/authentication/login/login.template.html',
+		controller: function(AuthenticationService, $rootScope, $state) {
+			this.send = () => {
+				AuthenticationService.logIn(this.user).then(
+					(response) => {
+						$rootScope.user = response.data;
+						$state.go('home');
+					},
+					() => {
+						this.status = 'Wrong email/password.';
+					});
+			};
+		}
+	});
