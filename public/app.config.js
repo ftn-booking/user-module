@@ -49,12 +49,12 @@ angular.module('app')
 			.when('', '/')
 			.otherwise('/error');
 	})
-	.run(function($rootScope, AuthenticationService) {
-		AuthenticationService.getCurrentUser().then(
-			(response) => {
-				$rootScope.user = response.data;
-			},
-			() => {
-				$rootScope.user = null;
-			});
+	.run(function($rootScope, $http) {
+		const email = localStorage.getItem('email');
+		const token = localStorage.getItem('token');
+		if(email) {
+			$rootScope.user = {};
+			$rootScope.user.email = email;
+			$http.defaults.headers.common.Authorization = 'Bearer ' + token;
+		}
 	});

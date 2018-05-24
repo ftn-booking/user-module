@@ -5,10 +5,9 @@ angular.module('header')
 		templateUrl: '/part/header/header.template.html',
 		controller: function(AuthenticationService, $rootScope, $state) {
 			this.logOut = () => {
-				AuthenticationService.logOut().then( () => {
-					$rootScope.user = null;
-					$state.go('home');
-				});
+				AuthenticationService.logOut();
+				delete $rootScope.user;
+				$state.go('home');
 			};
 		}
 	});

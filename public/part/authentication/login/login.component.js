@@ -6,8 +6,9 @@ angular.module('authentication.login')
 		controller: function(AuthenticationService, $rootScope, $state) {
 			this.send = () => {
 				AuthenticationService.logIn(this.user).then(
-					(response) => {
-						$rootScope.user = response.data;
+					() => {
+						$rootScope.user = {};
+						$rootScope.user.email = this.user.email;
 						$state.go('home');
 					},
 					() => {

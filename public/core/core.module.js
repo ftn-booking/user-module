@@ -1,5 +1,6 @@
 'use strict';
 
 angular.module('core', [
-	'core.authentication',
+	'core.host',
+	'core.authentication'
 ]);
