@@ -20,4 +20,10 @@ angular.module('core.authentication')
 			localStorage.removeItem('token');
 			delete $http.defaults.headers.common.Authorization;
 		};
+		this.changePassword = (data) => {
+			return $http.put(`${prefix}/api/authentication`, data);
+		};
+		this.getCurrentUser = () => {
+			return $http.get(`${prefix}/api/authentication`);
+		};
 	});

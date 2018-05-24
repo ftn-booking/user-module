@@ -35,6 +35,11 @@ angular.module('app')
 				template: '<h1>Link B</h1>'
 			})
 			.state({
+				name: 'profile',
+				url: '/profile',
+				component: 'myProfile'
+			})
+			.state({
 				name: 'authentication',
 				url: '/authentication',
 				component: 'myAuthentication'
