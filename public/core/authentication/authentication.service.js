@@ -23,6 +23,9 @@ angular.module('core.authentication')
 		this.changePassword = (data) => {
 			return $http.put(`${prefix}/api/authentication`, data);
 		};
+		this.resetPassword = (data) => {
+			return $http.put(`${prefix}/api/authentication/reset/${data}`);
+		};
 		this.getCurrentUser = () => {
 			return $http.get(`${prefix}/api/authentication`);
 		};

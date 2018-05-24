@@ -16,6 +16,9 @@
 		class="btn btn-custom"
 		value="Log in"
 		ng-click="loginForm.$valid && $ctrl.send()"/>
+	<a class="ml-3" ng-click="$ctrl.resetPassword()">
+		Forgot your password?
+	</a>
 	<p>
 		{{$ctrl.status}}
 	</p>

@@ -15,5 +15,13 @@ angular.module('authentication.login')
 						this.status = 'Wrong email/password.';
 					});
 			};
+			
+			this.resetPassword = () => {
+				AuthenticationService.resetPassword(this.user.email).then(
+					() => {
+						this.status = 'Recovery email sent';
+					}
+				);
+			};
 		}
 	});
