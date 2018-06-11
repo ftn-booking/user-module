@@ -9,10 +9,12 @@ angular.module('stars')
 		},
 		controller: function() {
 			this.full = () => {
-				return new Array(parseInt(this.rating));
+				if(this.rating)
+					return new Array(parseInt(this.rating));
 			};
 			this.empty = () => {
-				return new Array(this.max - parseInt(this.rating));
+				if(this.rating && this.rating <= this.max)
+					return new Array(this.max - parseInt(this.rating));
 			};
 		}
 	});
