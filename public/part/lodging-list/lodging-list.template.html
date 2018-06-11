@@ -1,0 +1,126 @@
+<div>
+	<h2>Lodging list:</h2>
+	<!--Search box-->
+	<form class="form-row">
+		<div class="col-md-auto">
+			<div class="form-group input-group">
+				<input type="text"
+					class="form-control"
+					ng-model="$ctrl.search"
+					placeholder="Search lodgings"
+					autofocus/>
+				<div class="input-group-append">
+					<span class="input-group-text">
+						<i class="fas fa-search"></i>
+					</span>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!--Order box-->
+	Order by:
+	<ul class="list-inline d-inline">
+		<li class="list-inline-item separate">
+			<a ng-click="$ctrl.orderBy('price')">Price</a>
+			<span ng-show="$ctrl.order === 'price'">
+				<i class="fas fa-sort-up" ng-show="!$ctrl.isReverse"></i>
+				<i class="fas fa-sort-down" ng-show="$ctrl.isReverse"></i>
+			</span>
+		</li>
+		<li class="list-inline-item separate">
+			<a ng-click="$ctrl.orderBy('rating')">Rating</a>
+			<span ng-show="$ctrl.order === 'rating'">
+				<i class="fas fa-sort-up" ng-show="!$ctrl.isReverse"></i>
+				<i class="fas fa-sort-down" ng-show="$ctrl.isReverse"></i>
+			</span>
+		</li>
+		<li class="list-inline-item separate">
+			<a ng-click="$ctrl.orderBy('category')">Category</a>
+			<span ng-show="$ctrl.order === 'category'">
+				<i class="fas fa-sort-up" ng-show="!$ctrl.isReverse"></i>
+				<i class="fas fa-sort-down" ng-show="$ctrl.isReverse"></i>
+			</span>
+		</li>
+	</ul>
+</div>
+<!--List-->
+<div class="row no-gutters align-items-stretch">
+	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | orderBy:$ctrl.order:$ctrl.isReverse"
+		class="card m-md-1 col-lg-4 col-md-6">
+			<div class="card-body">
+				<h3 class="card-title d-flex align-items-center">
+					<a ui-sref="home.lodgingDetail({id: lodging.id})">
+						{{lodging.name}}
+					</a>
+					<span class="badge badge-custom ml-2">
+						{{lodging.type}}
+					</span>
+				</h3>
+				<div class="card-subtitle mb-2 text-muted">
+					<span class="separate">
+						Category:
+						<my-stars rating="lodging.category" max="5"></my-stars>
+						{{lodging.rating}}/5
+					</span>
+					<span class="separate">
+						Rating:
+						<my-stars rating="lodging.rating" max="5"></my-stars>
+						{{lodging.rating}}/5
+					</span>
+				</div>
+				<p class="card-text">{{lodging.description}}</p>
+				<p>
+					<i class="fas fa-bed"></i>
+					{{lodging.numberOfBeds}},
+					{{$ctrl.formatType(lodging.foodServiceType)}}
+				</p>
+				<p>
+					<span class="separate">
+						<i class="fas fa-parking"></i>
+						<span ng-if="lodging.hasParking">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!lodging.hasParking">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-wifi"></i>
+						<span ng-if="lodging.hasWifi">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!lodging.hasWifi">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-tv"></i>
+						<span ng-if="lodging.hasTv">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!lodging.hasTv">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-utensils"></i>
+						<span ng-if="lodging.hasKitchen">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!lodging.hasKitchen">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-bath"></i>
+						<span ng-if="lodging.hasBathroom">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!lodging.hasBathroom">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+				</p>
+			</div>
+	</div>
+</div>

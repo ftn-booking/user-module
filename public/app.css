@@ -73,6 +73,12 @@ my-sidebar {
 	background-color: var(--selected_bg_color);
 }
 
+.badge-custom {
+	color: var(--selected_fg_color);
+	background-color: var(--selected_bg_color);
+	font-size: 0.8rem;
+}
+
 .card {
 	background-color: var(--bg_color);
 }
