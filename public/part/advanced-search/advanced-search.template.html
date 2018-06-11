@@ -13,6 +13,14 @@
 		ng-change="$ctrl.change()"
 		min="1"
 		placeholder="Category"/>
+	<select class="form-control mb-2 mr-sm-2"
+		ng-model="$ctrl.search.foodServiceType"
+		ng-change="$ctrl.change()">
+			<option value="">---Select a food service type---</option>
+			<option value="BREAKFAST">Breakfast</option>
+			<option value="HALF_BOARD">Half board</option>
+			<option value="FULL_BOARD">Full board</option>
+	</select>
 	<div class="form-check mb-2 mr-sm-2">
 		<input type="checkbox"
 			class="form-check-input"
