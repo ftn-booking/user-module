@@ -2,12 +2,12 @@
 	<h2>Lodging list:</h2>
 	<!--Search box-->
 	<form class="form-row">
-		<div class="col-md-auto">
+		<div class="col-md-6">
 			<div class="form-group input-group">
 				<input type="text"
 					class="form-control"
-					ng-model="$ctrl.search"
-					placeholder="Search lodgings"
+					ng-model="$ctrl.search.$"
+					placeholder="Search"
 					autofocus/>
 				<div class="input-group-append">
 					<span class="input-group-text">
@@ -17,6 +17,39 @@
 			</div>
 		</div>
 	</form>
+	<form class="form-inline">
+		<label for="fromDate" class="mb-1 mr-2">From:</label>
+		<input type="date"
+			class="form-control mb-2 mr-sm-2"
+			ng-model="$ctrl.search.fromDate"
+			id="fromDate"
+			placeholder="From"/>
+		<label for="toDate" class="mb-1 mr-2">To:</label>
+		<input type="date"
+			class="form-control mb-2 mr-sm-2"
+			ng-model="$ctrl.search.toDate"
+			id="toDate"
+			placeholder="To"/>
+		<input type="number"
+			class="form-control mb-2 mr-sm-2"
+			ng-model="$ctrl.search.numberOfBeds"
+			min="1"
+			placeholder="Number of beds"/>
+		<input type="button"
+			class="btn btn-custom mb-2 mr-sm-2"
+			ng-click="$ctrl.resetSearch()"
+			value="Reset all"/>
+		<input type="button"
+			class="btn btn-custom mb-2"
+			ng-click="$ctrl.advancedEnabled = !$ctrl.advancedEnabled"
+			value="Advanced search"/>
+	</form>
+	<div ng-show="$ctrl.advancedEnabled" class="panel">
+		<my-advanced-search
+			reset="$ctrl.advancedReset"
+			on-change="$ctrl.advancedSearch = search">
+		</my-advanced-search>
+	</div>
 	<!--Order box-->
 	Order by:
 	<ul class="list-inline d-inline">
@@ -45,7 +78,7 @@
 </div>
 <!--List-->
 <div class="row no-gutters align-items-stretch">
-	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | orderBy:$ctrl.order:$ctrl.isReverse"
+	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | filter:$ctrl.advancedSearch:true | orderBy:$ctrl.order:$ctrl.isReverse"
 		class="card m-md-1 col-lg-4 col-md-6">
 			<div class="card-body">
 				<h3 class="card-title d-flex align-items-center">

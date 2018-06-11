@@ -11,6 +11,13 @@ angular.module('lodgingList')
 					this.lodgings = null;
 				});
 
+			this.advancedEnabled = false;
+			this.advancedReset = false;
+			this.resetSearch = () => {
+				this.search = {};
+				this.advancedReset = !this.advancedReset;
+			};
+
 			this.order = null;
 			this.isReverse = true;
 			this.orderBy = (order) => {
