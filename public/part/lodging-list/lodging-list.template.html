@@ -79,85 +79,87 @@
 <!--List-->
 <div class="row no-gutters align-items-stretch">
 	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | filter:$ctrl.advancedSearch:true | orderBy:$ctrl.order:$ctrl.isReverse"
-		class="card m-md-1 col-lg-4 col-md-6">
-			<div class="card-body">
-				<h3 class="card-title d-flex align-items-center">
-					<a ui-sref="home.lodgingDetail({id: lodging.id})">
-						{{lodging.name}}
-					</a>
-					<span class="badge badge-custom ml-2">
-						{{lodging.type}}
-					</span>
-				</h3>
-				<div class="card-subtitle mb-2 text-muted">
-					<span class="separate">
-						Category:
-						<my-stars rating="lodging.category" max="5"></my-stars>
-						{{lodging.rating}}/5
-					</span>
-					<span class="separate">
-						Rating:
-						<my-stars rating="lodging.rating" max="5"></my-stars>
-						{{lodging.rating}}/5
-					</span>
+		class="col-lg-4 col-md-6">
+			<div class="card m-md-1">
+				<div class="card-body">
+					<h3 class="card-title d-flex align-items-center">
+						<a ui-sref="home.lodgingDetail({id: lodging.id})">
+							{{lodging.name}}
+						</a>
+						<span class="badge badge-custom ml-2">
+							{{lodging.type}}
+						</span>
+					</h3>
+					<div class="card-subtitle mb-2 text-muted">
+						<span class="separate">
+							Category:
+							<my-stars rating="lodging.category" max="5"></my-stars>
+							{{lodging.rating}}/5
+						</span>
+						<span class="separate">
+							Rating:
+							<my-stars rating="lodging.rating" max="5"></my-stars>
+							{{lodging.rating}}/5
+						</span>
+					</div>
+					<p class="card-text">{{lodging.description}}</p>
+					<p class="card-text">
+						<i class="fas fa-map-marker"></i>
+						{{lodging.address}}
+					</p>
+					<p class="card-text">
+						<i class="fas fa-bed"></i>
+						{{lodging.numberOfBeds}},
+						{{$ctrl.formatType(lodging.foodServiceType)}}
+					</p>
+					<p class="card-text">
+						<span class="separate">
+							<i class="fas fa-parking"></i>
+							<span ng-if="lodging.hasParking">
+								<i class="fas fa-check"></i>
+							</span>
+							<span ng-if="!lodging.hasParking">
+								<i class="fas fa-times"></i>
+							</span>
+						</span>
+						<span class="separate">
+							<i class="fas fa-wifi"></i>
+							<span ng-if="lodging.hasWifi">
+								<i class="fas fa-check"></i>
+							</span>
+							<span ng-if="!lodging.hasWifi">
+								<i class="fas fa-times"></i>
+							</span>
+						</span>
+						<span class="separate">
+							<i class="fas fa-tv"></i>
+							<span ng-if="lodging.hasTv">
+								<i class="fas fa-check"></i>
+							</span>
+							<span ng-if="!lodging.hasTv">
+								<i class="fas fa-times"></i>
+							</span>
+						</span>
+						<span class="separate">
+							<i class="fas fa-utensils"></i>
+							<span ng-if="lodging.hasKitchen">
+								<i class="fas fa-check"></i>
+							</span>
+							<span ng-if="!lodging.hasKitchen">
+								<i class="fas fa-times"></i>
+							</span>
+						</span>
+						<span class="separate">
+							<i class="fas fa-bath"></i>
+							<span ng-if="lodging.hasBathroom">
+								<i class="fas fa-check"></i>
+							</span>
+							<span ng-if="!lodging.hasBathroom">
+								<i class="fas fa-times"></i>
+							</span>
+						</span>
+					</p>
 				</div>
-				<p class="card-text">{{lodging.description}}</p>
-				<p class="card-text">
-					<i class="fas fa-map-marker"></i>
-					{{lodging.address}}
-				</p>
-				<p class="card-text">
-					<i class="fas fa-bed"></i>
-					{{lodging.numberOfBeds}},
-					{{$ctrl.formatType(lodging.foodServiceType)}}
-				</p>
-				<p class="card-text">
-					<span class="separate">
-						<i class="fas fa-parking"></i>
-						<span ng-if="lodging.hasParking">
-							<i class="fas fa-check"></i>
-						</span>
-						<span ng-if="!lodging.hasParking">
-							<i class="fas fa-times"></i>
-						</span>
-					</span>
-					<span class="separate">
-						<i class="fas fa-wifi"></i>
-						<span ng-if="lodging.hasWifi">
-							<i class="fas fa-check"></i>
-						</span>
-						<span ng-if="!lodging.hasWifi">
-							<i class="fas fa-times"></i>
-						</span>
-					</span>
-					<span class="separate">
-						<i class="fas fa-tv"></i>
-						<span ng-if="lodging.hasTv">
-							<i class="fas fa-check"></i>
-						</span>
-						<span ng-if="!lodging.hasTv">
-							<i class="fas fa-times"></i>
-						</span>
-					</span>
-					<span class="separate">
-						<i class="fas fa-utensils"></i>
-						<span ng-if="lodging.hasKitchen">
-							<i class="fas fa-check"></i>
-						</span>
-						<span ng-if="!lodging.hasKitchen">
-							<i class="fas fa-times"></i>
-						</span>
-					</span>
-					<span class="separate">
-						<i class="fas fa-bath"></i>
-						<span ng-if="lodging.hasBathroom">
-							<i class="fas fa-check"></i>
-						</span>
-						<span ng-if="!lodging.hasBathroom">
-							<i class="fas fa-times"></i>
-						</span>
-					</span>
-				</p>
 			</div>
 	</div>
 </div>
