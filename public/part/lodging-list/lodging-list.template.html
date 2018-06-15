@@ -102,12 +102,16 @@
 					</span>
 				</div>
 				<p class="card-text">{{lodging.description}}</p>
-				<p>
+				<p class="card-text">
+					<i class="fas fa-map-marker"></i>
+					{{lodging.address}}
+				</p>
+				<p class="card-text">
 					<i class="fas fa-bed"></i>
 					{{lodging.numberOfBeds}},
 					{{$ctrl.formatType(lodging.foodServiceType)}}
 				</p>
-				<p>
+				<p class="card-text">
 					<span class="separate">
 						<i class="fas fa-parking"></i>
 						<span ng-if="lodging.hasParking">
