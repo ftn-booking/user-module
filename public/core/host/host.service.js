@@ -2,5 +2,5 @@
 
 angular.module('core.host')
 	.service('HostService', function() {
-		this.prefix = 'http://localhost:8080';
+		this.prefix = 'https://localhost:8080';
 	});
