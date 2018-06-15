@@ -3,13 +3,14 @@
 angular.module('lodgingList')
 	.component('myLodgingList', {
 		templateUrl: '/part/lodging-list/lodging-list.template.html',
-		controller: function(LodgingService) {
+		controller: function(LodgingService, HostService) {
 			LodgingService.getAll()
 				.then( (response) => {
 					this.lodgings = response.data;
 				}, () => {
 					this.lodgings = null;
 				});
+			this.imageHost = HostService.prefix;
 
 			this.advancedEnabled = false;
 			this.advancedReset = false;

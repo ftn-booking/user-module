@@ -4,5 +4,6 @@ angular.module('lodgingList', [
 	'ui.router',
 	'stars',
 	'advancedSearch',
-	'core.lodging'
+	'core.lodging',
+	'core.host'
 ]);
