@@ -10,4 +10,7 @@ angular.module('core.lodging')
 		this.getOne = (id) => {
 			return $http.get(`${prefix}/api/lodgings/${id}`);
 		};
+		this.getAvailable = (fromDate, toDate) => {
+			return $http.get(`${prefix}/api/lodgings/from/${fromDate}/to/${toDate}`);
+		};
 	});

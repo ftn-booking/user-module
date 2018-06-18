@@ -4,12 +4,18 @@ angular.module('lodgingList')
 	.component('myLodgingList', {
 		templateUrl: '/part/lodging-list/lodging-list.template.html',
 		controller: function(LodgingService, HostService) {
-			LodgingService.getAll()
-				.then( (response) => {
-					this.lodgings = response.data;
-				}, () => {
-					this.lodgings = null;
-				});
+			this.fromDate = new Date();
+			this.toDate = new Date();
+			this.toDate.setDate(this.toDate.getDate() + 1);
+			this.filterByDate = () => {
+				LodgingService.getAvailable(this.fromDate.getTime(), this.toDate.getTime())
+					.then( (response) => {
+						this.lodgings = response.data;
+					}, () => {
+						this.lodgings = null;
+					});
+			};
+			this.filterByDate();
 			this.imageHost = HostService.prefix;
 
 			this.advancedEnabled = false;

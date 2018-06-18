@@ -21,15 +21,19 @@
 		<label for="fromDate" class="mb-1 mr-2">From:</label>
 		<input type="date"
 			class="form-control mb-2 mr-sm-2"
-			ng-model="$ctrl.search.fromDate"
+			ng-model="$ctrl.fromDate"
+			ng-change="$ctrl.filterByDate()"
 			id="fromDate"
-			placeholder="From"/>
+			placeholder="From"
+			required/>
 		<label for="toDate" class="mb-1 mr-2">To:</label>
 		<input type="date"
 			class="form-control mb-2 mr-sm-2"
-			ng-model="$ctrl.search.toDate"
+			ng-model="$ctrl.toDate"
+			ng-change="$ctrl.filterByDate()"
 			id="toDate"
-			placeholder="To"/>
+			placeholder="To"
+			required/>
 		<input type="number"
 			class="form-control mb-2 mr-sm-2"
 			ng-model="$ctrl.search.numberOfBeds"
