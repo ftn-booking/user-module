@@ -5,5 +5,5 @@ angular.module('lodgingList', [
 	'stars',
 	'advancedSearch',
 	'core.lodging',
-	'core.host'
+	'slideshow'
 ]);

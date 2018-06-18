@@ -1,0 +1,26 @@
+<div id="carousel-{{$ctrl.id}}" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+			<li ng-repeat="imagePath in $ctrl.imagePaths track by $index"
+				data-target="#carousel-{{$ctrl.id}}"
+				data-slide-to="{{$index}}"
+				ng-class="{active: $index === 0}"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="carousel-item"
+			ng-class="{active: $index === 0}"
+			ng-repeat="imagePath in $ctrl.imagePaths track by $index">
+				<img class="d-block w-100"
+					ng-src="{{$ctrl.imageHost}}/{{imagePath}}"/>
+		</div>
+	</div>
+	<a class="carousel-control-prev"
+		data-target="#carousel-{{$ctrl.id}}"
+		data-slide="prev">
+			<span class="carousel-control-prev-icon"></span>
+	</a>
+	<a class="carousel-control-next"
+		data-target="#carousel-{{$ctrl.id}}"
+		data-slide="next">
+			<span class="carousel-control-next-icon"></span>
+	</a>
+</div>

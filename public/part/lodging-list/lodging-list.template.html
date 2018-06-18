@@ -85,10 +85,10 @@
 	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | filter:$ctrl.advancedSearch:true | orderBy:$ctrl.order:$ctrl.isReverse"
 		class="col-lg-4 col-md-6">
 			<div class="card m-md-1">
-				<img class="card-img-top" ng-src="{{$ctrl.imageHost}}/{{lodging.imagePaths[0]}}"/>
+				<my-slideshow class="card-img-top" image-paths="lodging.imagePaths"/>
 				<div class="card-body">
 					<h3 class="card-title d-flex align-items-center">
-						<a ui-sref="home.lodgingDetail({id: lodging.id})">
+						<a ui-sref="home.lodging({id: lodging.id})">
 							{{lodging.name}}
 						</a>
 						<span class="badge badge-custom ml-2">
@@ -99,7 +99,7 @@
 						<span class="separate">
 							Category:
 							<my-stars rating="lodging.category" max="5"></my-stars>
-							{{lodging.rating}}/5
+							{{lodging.category}}/5
 						</span>
 						<span class="separate">
 							Rating:

@@ -3,7 +3,7 @@
 angular.module('lodgingList')
 	.component('myLodgingList', {
 		templateUrl: '/part/lodging-list/lodging-list.template.html',
-		controller: function(LodgingService, HostService) {
+		controller: function(LodgingService) {
 			this.fromDate = new Date();
 			this.toDate = new Date();
 			this.toDate.setDate(this.toDate.getDate() + 1);
@@ -16,7 +16,6 @@ angular.module('lodgingList')
 					});
 			};
 			this.filterByDate();
-			this.imageHost = HostService.prefix;
 
 			this.advancedEnabled = false;
 			this.advancedReset = false;
