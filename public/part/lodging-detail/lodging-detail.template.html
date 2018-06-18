@@ -1,0 +1,95 @@
+<!--List-->
+<div class="row no-gutters align-items-stretch">
+	<div class="col-md-6">
+		<div class="card m-md-1">
+			<my-slideshow class="card-img-top" image-paths="$ctrl.lodging.imagePaths"/>
+			<div class="card-body">
+				<h3 class="card-title d-flex align-items-center">
+					{{$ctrl.lodging.name}}
+					<span class="badge badge-custom ml-2">
+						{{$ctrl.lodging.type}}
+					</span>
+				</h3>
+				<div class="card-subtitle mb-2 text-muted">
+					<span class="separate">
+						Category:
+						<my-stars rating="$ctrl.lodging.category" max="5"></my-stars>
+						{{$ctrl.lodging.category}}/5
+					</span>
+					<span class="separate">
+						Rating:
+						<my-stars rating="$ctrl.lodging.rating" max="5"></my-stars>
+						{{$ctrl.lodging.rating}}/5
+					</span>
+				</div>
+				<p class="card-text">{{$ctrl.lodging.description}}</p>
+				<p class="card-text">
+					<i class="fas fa-map-marker"></i>
+					{{$ctrl.lodging.address}}
+				</p>
+				<p class="card-text">
+					<i class="fas fa-bed"></i>
+					{{$ctrl.lodging.numberOfBeds}},
+					{{$ctrl.formatType($ctrl.lodging.foodServiceType)}}
+				</p>
+				<p class="card-text">
+					<span class="separate">
+						<i class="fas fa-parking"></i>
+						<span ng-if="$ctrl.lodging.hasParking">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!$ctrl.lodging.hasParking">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-wifi"></i>
+						<span ng-if="$ctrl.lodging.hasWifi">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!$ctrl.lodging.hasWifi">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-tv"></i>
+						<span ng-if="$ctrl.lodging.hasTv">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!$ctrl.lodging.hasTv">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-utensils"></i>
+						<span ng-if="$ctrl.lodging.hasKitchen">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!$ctrl.lodging.hasKitchen">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+					<span class="separate">
+						<i class="fas fa-bath"></i>
+						<span ng-if="$ctrl.lodging.hasBathroom">
+							<i class="fas fa-check"></i>
+						</span>
+						<span ng-if="!$ctrl.lodging.hasBathroom">
+							<i class="fas fa-times"></i>
+						</span>
+					</span>
+				</p>
+			</div>
+			<div class="card-footer" ng-if="$root.user">
+				<a class="btn btn-custom mr-1"
+					ng-click="$ctrl.reserve()">
+					Reserve lodging
+					from <i>{{$ctrl.fromDate | date}}</i>
+					- <i>{{$ctrl.toDate | date}}</i>
+					for {{ lodging.price | currency}}
+				</a>
+				{{$ctrl.status}}
+			</div>
+		</div>
+	</div>
+</div>

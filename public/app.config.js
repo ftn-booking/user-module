@@ -15,6 +15,11 @@ angular.module('app')
 				component: 'myLodgingList'
 			})
 			.state({
+				name: 'home.lodging',
+				url: '^/lodging/{id:\\d+}/from/{fromDate:\\d+}/to/{toDate:\\d+}',
+				component: 'myLodgingDetail'
+			})
+			.state({
 				name: 'home.reservations',
 				url: '^/reservations',
 				template: '<h1>Reservations</h1>'

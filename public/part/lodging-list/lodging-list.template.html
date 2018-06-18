@@ -88,8 +88,12 @@
 				<my-slideshow class="card-img-top" image-paths="lodging.imagePaths"/>
 				<div class="card-body">
 					<h3 class="card-title d-flex align-items-center">
-						<a ui-sref="home.lodging({id: lodging.id})">
-							{{lodging.name}}
+						<a ui-sref="home.lodging({
+								id: lodging.id,
+								fromDate: $ctrl.fromDate.getTime(),
+								toDate: $ctrl.toDate.getTime()
+							})">
+								{{lodging.name}}
 						</a>
 						<span class="badge badge-custom ml-2">
 							{{lodging.type}}
