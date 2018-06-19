@@ -8,6 +8,10 @@ angular.module('lodgingList')
 			this.toDate = new Date();
 			this.toDate.setDate(this.toDate.getDate() + 1);
 			this.filterByDate = () => {
+				if(this.toDate < this.fromDate) {
+					this.toDate = new Date(this.fromDate);
+					this.toDate.setDate(this.toDate.getDate() + 1);
+				}
 				LodgingService.getAvailable(this.fromDate.getTime(), this.toDate.getTime())
 					.then( (response) => {
 						this.lodgings = response.data;

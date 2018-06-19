@@ -33,6 +33,7 @@
 			ng-change="$ctrl.filterByDate()"
 			id="toDate"
 			placeholder="To"
+			min="{{$ctrl.fromDate | date:'yyyy-MM-dd'}}"
 			required/>
 		<input type="number"
 			class="form-control mb-2 mr-sm-2"
