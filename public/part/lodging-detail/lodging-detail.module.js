@@ -5,5 +5,6 @@ angular.module('lodgingDetail', [
 	'core.lodging',
 	'core.reservation',
 	'core.price',
+	'core.comment',
 	'slideshow'
 ]);

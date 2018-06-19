@@ -3,7 +3,7 @@
 angular.module('lodgingDetail')
 	.component('myLodgingDetail', {
 		templateUrl: '/part/lodging-detail/lodging-detail.template.html',
-		controller: function($stateParams, LodgingService, ReservationService, PriceService) {
+		controller: function($stateParams, LodgingService, ReservationService, PriceService, CommentService) {
 			this.lodgingId = $stateParams.id;
 			this.fromDate = new Date(parseInt($stateParams.fromDate));
 			this.toDate = new Date(parseInt($stateParams.toDate));
@@ -27,6 +27,11 @@ angular.module('lodgingDetail')
 					this.activePrice = response.data;
 				}, () => {
 					this.activePrice = null;
+				});
+
+			CommentService.getAll(this.lodgingId)
+				.then( (response) => {
+					this.comments = response.data;
 				});
 
 			this.reserve = () => {
