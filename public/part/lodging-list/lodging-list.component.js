@@ -11,6 +11,11 @@ angular.module('lodgingList')
 				LodgingService.getAvailable(this.fromDate.getTime(), this.toDate.getTime())
 					.then( (response) => {
 						this.lodgings = response.data;
+						for(let lodging of this.lodgings) {
+							for(const feature of lodging.featureType) {
+								lodging['has' + feature.name] = true;
+							}
+						}
 					}, () => {
 						this.lodgings = null;
 					});

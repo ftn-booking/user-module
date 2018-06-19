@@ -7,7 +7,20 @@ angular.module('advancedSearch')
 			reset: '<',
 			onChange: '&'
 		},
-		controller: function() {
+		controller: function(TypeService) {
+			TypeService.getLodgingTypes()
+				.then( (response) => {
+					this.lodgingTypes = response.data;
+				});
+			TypeService.getFoodTypes()
+				.then( (response) => {
+					this.foodTypes = response.data;
+				});
+			TypeService.getFeatureTypes()
+				.then( (response) => {
+					this.featureTypes = response.data;
+				});
+
 			this.$onChanges = (changes) => {
 				if(changes.reset) {
 					this.search = {};

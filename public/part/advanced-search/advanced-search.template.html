@@ -1,79 +1,49 @@
 <form class="form-inline">
+	<!--Type-->
 	<select class="form-control mb-2 mr-sm-2"
-		ng-model="$ctrl.search.type"
+		ng-model="$ctrl.search.lodgingType.name"
 		ng-change="$ctrl.change()">
 			<option value="">---Select a type---</option>
-			<option value="HOTEL">Hotel</option>
-			<option value="B_AND_B">B&amp;B</option>
-			<option value="APARTMENT">Apartment</option>
+			<option ng-repeat="lodgingType in $ctrl.lodgingTypes track by lodgingType.id"
+				value="{{lodgingType.name}}">{{lodgingType.name}}</option>
 	</select>
+	<!--Category-->
 	<input type="number"
 		class="form-control mb-2 mr-sm-2"
 		ng-model="$ctrl.search.category"
 		ng-change="$ctrl.change()"
 		min="1"
 		placeholder="Category"/>
+	<!--Food service-->
 	<select class="form-control mb-2 mr-sm-2"
-		ng-model="$ctrl.search.foodServiceType"
+		ng-model="$ctrl.search.foodServiceType.name"
 		ng-change="$ctrl.change()">
 			<option value="">---Select a food service type---</option>
-			<option value="BREAKFAST">Breakfast</option>
-			<option value="HALF_BOARD">Half board</option>
-			<option value="FULL_BOARD">Full board</option>
+			<option ng-repeat="foodServiceType in $ctrl.foodTypes track by foodServiceType.id"
+				value="{{foodServiceType.name}}">{{foodServiceType.name}}</option>
 	</select>
-	<div class="form-check mb-2 mr-sm-2">
-		<input type="checkbox"
-			class="form-check-input"
-			id="hasParking"
-			ng-model="$ctrl.search.hasParking"
-			ng-change="$ctrl.change()"
-			ng-false-value="">
-		<label class="form-check-label" for="hasParking">
-			<i class="fas fa-parking"></i>
-		</label>
-	</div>
-	<div class="form-check mb-2 mr-sm-2">
-		<input type="checkbox"
-			class="form-check-input"
-			id="hasWifi"
-			ng-model="$ctrl.search.hasWifi"
-			ng-change="$ctrl.change()"
-			ng-false-value="">
-		<label class="form-check-label" for="hasWifi">
-			<i class="fas fa-wifi"></i>
-		</label>
-	</div>
-	<div class="form-check mb-2 mr-sm-2">
-		<input type="checkbox"
-			class="form-check-input"
-			id="hasTv"
-			ng-model="$ctrl.search.hasTv"
-			ng-change="$ctrl.change()"
-			ng-false-value="">
-		<label class="form-check-label" for="hasTv">
-			<i class="fas fa-tv"></i>
-		</label>
-	</div>
-	<div class="form-check mb-2 mr-sm-2">
-		<input type="checkbox"
-			class="form-check-input"
-			id="hasKitchen"
-			ng-model="$ctrl.search.hasKitchen"
-			ng-change="$ctrl.change()"
-			ng-false-value="">
-		<label class="form-check-label" for="hasKitchen">
-			<i class="fas fa-utensils"></i>
-		</label>
-	</div>
-	<div class="form-check mb-2 mr-sm-2">
-		<input type="checkbox"
-			class="form-check-input"
-			id="hasBathroom"
-			ng-model="$ctrl.search.hasBathroom"
-			ng-change="$ctrl.change()"
-			ng-false-value="">
-		<label class="form-check-label" for="hasBathroom">
-			<i class="fas fa-bath"></i>
-		</label>
+	<!--Features-->
+	<div ng-repeat="featureType in $ctrl.featureTypes track by featureType.id"
+		ng-switch="featureType.name"
+		class="form-check mb-2 mr-sm-2">
+			<label class="form-check-label" for="{{featureType.name}}">
+				<i ng-switch-when="Parking"
+					class="fas fa-parking"></i>
+				<i ng-switch-when="WiFi"
+					class="fas fa-wifi"></i>
+				<i ng-switch-when="TV"
+					class="fas fa-tv"></i>
+				<i ng-switch-when="Kitchen"
+					class="fas fa-utensils"></i>
+				<i ng-switch-when="Bathroom"
+					class="fas fa-bath"></i>
+				<i ng-switch-default>{{featureType.name}}</i>
+			</label>
+			<input type="checkbox"
+				class="form-check-input"
+				id="{{featureType.name}}"
+				ng-model="$ctrl.search['has' + featureType.name]"
+				ng-change="$ctrl.change()"
+				ng-false-value="">
 	</div>
 </form>
