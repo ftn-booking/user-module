@@ -82,7 +82,7 @@
 </div>
 <!--List-->
 <div class="row no-gutters align-items-stretch">
-	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | filter:$ctrl.advancedSearch:true | orderBy:$ctrl.order:$ctrl.isReverse"
+	<div ng-repeat="lodging in $ctrl.lodgings | filter:$ctrl.search | filter:$ctrl.advancedSearch:true | orderBy:$ctrl.order:$ctrl.isReverse track by lodging.id"
 		class="col-lg-4 col-md-6">
 			<div class="card m-md-1">
 				<my-slideshow class="card-img-top" image-paths="lodging.imagePaths"/>
@@ -96,7 +96,7 @@
 								{{lodging.name}}
 						</a>
 						<span class="badge badge-custom ml-2">
-							{{lodging.type}}
+							{{lodging.lodgingType.name}}
 						</span>
 					</h3>
 					<div class="card-subtitle mb-2 text-muted">
@@ -119,53 +119,24 @@
 					<p class="card-text">
 						<i class="fas fa-bed"></i>
 						{{lodging.numberOfBeds}},
-						{{$ctrl.formatType(lodging.foodServiceType)}}
+						{{lodging.foodServiceType.name}}
 					</p>
 					<p class="card-text">
-						<span class="separate">
-							<i class="fas fa-parking"></i>
-							<span ng-if="lodging.hasParking">
+						<span class="separate"
+							ng-repeat="feature in lodging.featureType track by feature.id"
+							ng-switch="feature.name">
+								<i ng-switch-when="Parking"
+									class="fas fa-parking"></i>
+								<i ng-switch-when="WiFi"
+									class="fas fa-wifi"></i>
+								<i ng-switch-when="TV"
+									class="fas fa-tv"></i>
+								<i ng-switch-when="Kitchen"
+									class="fas fa-utensils"></i>
+								<i ng-switch-when="Bathroom"
+									class="fas fa-bath"></i>
+								<i ng-switch-default>{{feature.name}}</i>
 								<i class="fas fa-check"></i>
-							</span>
-							<span ng-if="!lodging.hasParking">
-								<i class="fas fa-times"></i>
-							</span>
-						</span>
-						<span class="separate">
-							<i class="fas fa-wifi"></i>
-							<span ng-if="lodging.hasWifi">
-								<i class="fas fa-check"></i>
-							</span>
-							<span ng-if="!lodging.hasWifi">
-								<i class="fas fa-times"></i>
-							</span>
-						</span>
-						<span class="separate">
-							<i class="fas fa-tv"></i>
-							<span ng-if="lodging.hasTv">
-								<i class="fas fa-check"></i>
-							</span>
-							<span ng-if="!lodging.hasTv">
-								<i class="fas fa-times"></i>
-							</span>
-						</span>
-						<span class="separate">
-							<i class="fas fa-utensils"></i>
-							<span ng-if="lodging.hasKitchen">
-								<i class="fas fa-check"></i>
-							</span>
-							<span ng-if="!lodging.hasKitchen">
-								<i class="fas fa-times"></i>
-							</span>
-						</span>
-						<span class="separate">
-							<i class="fas fa-bath"></i>
-							<span ng-if="lodging.hasBathroom">
-								<i class="fas fa-check"></i>
-							</span>
-							<span ng-if="!lodging.hasBathroom">
-								<i class="fas fa-times"></i>
-							</span>
 						</span>
 					</p>
 				</div>

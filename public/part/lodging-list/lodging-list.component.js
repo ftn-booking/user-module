@@ -31,10 +31,5 @@ angular.module('lodgingList')
 				this.order = order;
 			};
 
-			this.formatType = (type) => {
-				type = type.charAt(0).toUpperCase() + type.substr(1).toLowerCase();
-				type = type.replace('_', ' ');
-				return type;
-			};
 		}
 	});
