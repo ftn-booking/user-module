@@ -3,7 +3,7 @@
 angular.module('lodgingList')
 	.component('myLodgingList', {
 		templateUrl: '/part/lodging-list/lodging-list.template.html',
-		controller: function(LodgingService) {
+		controller: function(LodgingService, PriceService) {
 			this.fromDate = new Date();
 			this.toDate = new Date();
 			this.toDate.setDate(this.toDate.getDate() + 1);
@@ -15,6 +15,10 @@ angular.module('lodgingList')
 							for(const feature of lodging.featureType) {
 								lodging['has' + feature.name] = true;
 							}
+							PriceService.getActive(lodging.id, this.fromDate.getTime())
+								.then( (response) => {
+									lodging.price = response.data;
+								});
 						}
 					}, () => {
 						this.lodgings = null;
