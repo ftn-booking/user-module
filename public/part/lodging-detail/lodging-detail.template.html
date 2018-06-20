@@ -11,16 +11,16 @@
 					</span>
 				</h3>
 				<div class="card-subtitle mb-2 text-muted">
-					<span class="separate">
+					<div>
 						Category:
 						<my-stars rating="$ctrl.lodging.category" max="5"></my-stars>
 						{{$ctrl.lodging.category}}/5
-					</span>
-					<span class="separate">
+					</div>
+					<div>
 						Rating:
 						<my-stars rating="$ctrl.lodging.rating" max="5"></my-stars>
 						{{$ctrl.lodging.rating}}/5
-					</span>
+					</div>
 				</div>
 				<p class="card-text">{{$ctrl.lodging.description}}</p>
 				<p class="card-text">
@@ -65,15 +65,16 @@
 					</ul>
 				</p>
 			</div>
-			<div class="card-footer" ng-if="$root.user">
-				<button class="btn btn-custom mr-1"
-					ng-click="$ctrl.reserve()">
+			<div class="card-footer text-right" ng-if="$root.user">
+				{{$ctrl.status}}
+				<button class="btn btn-custom ml-1"
+					ng-click="$ctrl.reserve()"
+					ng-disabled="$ctrl.status">
 					Reserve lodging
 					from <b>{{$ctrl.fromDate | date}}</b>
 					- <b>{{$ctrl.toDate | date}}</b>
 					for <b>{{$ctrl.activePrice[0].pricePerDay | currency}}</b>
 				</button>
-				{{$ctrl.status}}
 			</div>
 		</div>
 	</div>
