@@ -22,7 +22,7 @@ angular.module('app')
 			.state({
 				name: 'home.reservations',
 				url: '^/reservations',
-				template: '<h1>Reservations</h1>'
+				component: 'myReservationList'
 			})
 			.state({
 				name: 'profile',

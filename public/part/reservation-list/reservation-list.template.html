@@ -1,0 +1,96 @@
+<h2>Reservation list:</h2>
+<!--List-->
+<div class="row no-gutters align-items-stretch">
+	<div ng-repeat="reservation in $ctrl.reservations track by reservation.id"
+		class="col-lg-4 col-md-6">
+			<div class="card m-md-1">
+				<div class="card-header text-center">
+					<p>
+						Reserved from {{reservation.fromDate | date}}
+						— {{reservation.toDate | date}}
+					</p>
+					<p>
+						Completed
+						<i ng-if="reservation.approved" class="fas fa-check"></i>
+						<i ng-if="!reservation.approved" class="fas fa-times"></i>
+					</p>
+				</div>
+				<my-slideshow class="card-img-top" image-paths="reservation.lodging.imagePaths"/>
+				<div class="card-body">
+					<h3 class="card-title d-flex align-items-center">
+						{{reservation.lodging.name}}
+						<span class="badge badge-custom ml-2">
+							{{reservation.lodging.lodgingType.name}}
+						</span>
+					</h3>
+					<div class="card-subtitle mb-2 text-muted">
+						<span class="separate">
+							Category:
+							<my-stars rating="reservation.lodging.category" max="5"></my-stars>
+							{{reservation.lodging.category}}/5
+						</span>
+						<span class="separate">
+							Rating:
+							<my-stars rating="reservation.lodging.rating" max="5"></my-stars>
+							{{reservation.lodging.rating}}/5
+						</span>
+					</div>
+					<p class="card-text">{{reservation.lodging.description}}</p>
+					<p class="card-text">
+						<i class="fas fa-map-marker"></i>
+						{{reservation.lodging.address}}
+					</p>
+					<p class="card-text">
+						<i class="fas fa-bed"></i>
+						{{reservation.lodging.numberOfBeds}},
+						{{reservation.lodging.foodServiceType.name}}
+					</p>
+					<p class="card-text">
+						<span class="separate"
+							ng-repeat="feature in reservation.lodging.featureType track by feature.id"
+							ng-switch="feature.name">
+								<i ng-switch-when="Parking"
+									class="fas fa-parking"></i>
+								<i ng-switch-when="WiFi"
+									class="fas fa-wifi"></i>
+								<i ng-switch-when="TV"
+									class="fas fa-tv"></i>
+								<i ng-switch-when="Kitchen"
+									class="fas fa-utensils"></i>
+								<i ng-switch-when="Bathroom"
+									class="fas fa-bath"></i>
+								<i ng-switch-default>{{feature.name}}</i>
+								<i class="fas fa-check"></i>
+						</span>
+					</p>
+				</div>
+				<div class="card-footer d-flex justify-content-end">
+					<button ng-if="reservation.approved"
+						class="btn btn-custom mr-1"
+						ng-click="$ctrl.comment(reservation)">
+							Leave a comment
+					</button>
+					<form ng-if="reservation.approved && !reservation.rating" class="form-inline mr-1 w-25">
+						<div class="input-group">
+							<input type="number"
+								class="form-control"
+								ng-model="reservation.newRating"
+								placeholder="1-5"
+								required/>
+							<div class="input-group-append">
+								<button class="btn btn-custom"
+									ng-click="$ctrl.rate(reservation)">
+										Rate
+								</button>
+							</div>
+						</div>
+					</form>
+					<button ng-if="!reservation.approved"
+						class="btn btn-custom mr-1"
+						ng-click="$ctrl.cancel(reservation)">
+							Cancel reservation
+					</button>
+				</div>
+			</div>
+	</div>
+</div>

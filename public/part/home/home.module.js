@@ -3,5 +3,6 @@
 angular.module('home', [
 	'sidebar',
 	'lodgingList',
-	'lodgingDetail'
+	'lodgingDetail',
+	'reservationList'
 ]);
