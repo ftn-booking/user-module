@@ -3,11 +3,23 @@
 angular.module('reservationList')
 	.component('myReservationList', {
 		templateUrl: '/part/reservation-list/reservation-list.template.html',
-		controller: function(ReservationService) {
+		controller: function(ReservationService, CommentService) {
 			ReservationService.getAll()
 				.then( (response) => {
 					this.reservations = response.data;
 				});
+
+			this.comment = (reservation) => {
+				let request = {};
+				request.reservationId = reservation.id;
+				request.content = reservation.newComment;
+				CommentService.add(request)
+					.then( () => {
+						reservation.commentStatus = 'Comment submited successfully';
+					}, () => {
+						reservation.commentStatus = 'Error';
+					});
+			};
 
 			this.rate = (reservation) => {
 				ReservationService.rate(reservation.id, reservation.newRating)

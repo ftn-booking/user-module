@@ -7,4 +7,7 @@ angular.module('core.comment')
 		this.getAll = (id) => {
 			return $http.get(`${prefix}/api/comments/lodging/${id}`);
 		};
+		this.add = (data) => {
+			return $http.post(`${prefix}/api/comments`, data);
+		};
 	});
