@@ -3,7 +3,7 @@
 angular.module('reservationList')
 	.component('myReservationList', {
 		templateUrl: '/part/reservation-list/reservation-list.template.html',
-		controller: function(ReservationService, CommentService) {
+		controller: function(ReservationService, CommentService, MessageService) {
 			ReservationService.getAll()
 				.then( (response) => {
 					this.reservations = response.data;
@@ -34,6 +34,18 @@ angular.module('reservationList')
 					.then( () => {
 						let index = this.reservations.indexOf(reservation);
 						this.reservations.splice(index, 1);
+					});
+			};
+
+			this.message = (reservation) => {
+				let request = {};
+				request.reservationId = reservation.id;
+				request.content = reservation.newMessage;
+				MessageService.add(request)
+					.then( () => {
+						reservation.messageStatus = 'Message submited successfully';
+					}, () => {
+						reservation.messageStatus = 'Error';
 					});
 			};
 		}

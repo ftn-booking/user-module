@@ -69,7 +69,12 @@
 						{{reservation.rating}}/5
 					</p>
 				</div>
+				<!--Actions-->
 				<div class="card-footer form-row justify-content-end">
+					<button class="btn btn-custom mr-1 col-auto"
+						ng-click="reservation.showMessage  = !reservation.showMessage">
+							Message agent
+					</button>
 					<button class="btn btn-custom col-auto"
 						ng-if="reservation.approved"
 						ng-click="reservation.showComment  = !reservation.showComment">
@@ -100,6 +105,25 @@
 							Cancel reservation
 					</button>
 				</div>
+				<!--Message text area-->
+				<div class="card-footer" ng-show="reservation.showMessage">
+					<form name="messageForm" class="form-row align-items-end">
+						<textarea class="form-control col mr-1"
+							rows="3"
+							placeholder="Leave a message to agent {{reservation.lodging.agent.email}}"
+							ng-model="reservation.newMessage"
+							required>
+						</textarea>
+						<button class="btn btn-custom col-auto"
+							ng-click="messageForm.$valid && $ctrl.message(reservation)">
+								Submit
+						</button>
+					</form>
+					<div class="m-2">
+						{{reservation.messageStatus}}
+					</div>
+				</div>
+				<!--Comment text area-->
 				<div class="card-footer" ng-show="reservation.showComment">
 					<form name="commentForm" class="form-row align-items-end">
 						<textarea class="form-control col mr-1"
