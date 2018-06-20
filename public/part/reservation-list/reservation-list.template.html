@@ -63,6 +63,11 @@
 								<i class="fas fa-check"></i>
 						</span>
 					</p>
+					<p class="card-text" ng-if="reservation.rating">
+						<i class="fas fa-heart"></i> Your rating:
+						<my-stars rating="reservation.rating" max="5"></my-stars>
+						{{reservation.rating}}/5
+					</p>
 				</div>
 				<div class="card-footer form-row justify-content-end">
 					<button class="btn btn-custom col-auto"
