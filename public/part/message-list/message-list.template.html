@@ -1,0 +1,25 @@
+<div class="row justify-content-md-center">
+	<div class="col-md-4">
+		<h2 class="text-center">Message list:</h2>
+		<div class="card m-md-1"
+			ng-repeat="message in $ctrl.messages track by message.id"
+			ng-class="{'text-right': message.userSent}">
+				<div ng-if="message.userSent" class="card-header">
+					{{message.user.email}}
+					— {{message.user.name}}
+					{{message.user.lastName}}
+				</div>
+				<div ng-if="!message.userSent" class="card-header">
+					{{message.reservation.lodging.agent.email}}
+					— {{message.reservation.lodging.agent.name}}
+					{{message.reservation.lodging.agent.lastName}}
+					— Agent of {{message.reservation.lodging.name}}
+				</div>
+				<div class="card-body">
+					<p class="card-text">
+						{{message.content}}
+					</p>
+				</div>
+		</div>
+	</div>
+</div>

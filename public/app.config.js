@@ -30,6 +30,11 @@ angular.module('app')
 				component: 'myProfile'
 			})
 			.state({
+				name: 'messages',
+				url: '/messages',
+				component: 'myMessageList'
+			})
+			.state({
 				name: 'authentication',
 				url: '/authentication',
 				component: 'myAuthentication'
