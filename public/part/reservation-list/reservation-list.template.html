@@ -75,7 +75,8 @@
 						ng-click="reservation.showComment  = !reservation.showComment">
 							Leave a comment
 					</button>
-					<form class="col-auto"
+					<form name="ratingForm"
+						class="col-auto"
 						ng-if="reservation.approved && !reservation.rating">
 							<div class="input-group">
 								<input type="number"
@@ -87,7 +88,7 @@
 									required/>
 								<div class="input-group-append">
 									<button class="btn btn-custom"
-										ng-click="$ctrl.rate(reservation)">
+										ng-click="ratingForm.$valid && $ctrl.rate(reservation)">
 											Rate
 									</button>
 								</div>
@@ -100,7 +101,7 @@
 					</button>
 				</div>
 				<div class="card-footer" ng-show="reservation.showComment">
-					<form class="form-row align-items-end">
+					<form name="commentForm" class="form-row align-items-end">
 						<textarea class="form-control col mr-1"
 							rows="3"
 							placeholder="Leave a comment"
@@ -108,7 +109,7 @@
 							required>
 						</textarea>
 						<button class="btn btn-custom col-auto"
-							ng-click="$ctrl.comment(reservation)">
+							ng-click="commentForm.$valid && $ctrl.comment(reservation)">
 								Submit
 						</button>
 					</form>
