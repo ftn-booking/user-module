@@ -16,5 +16,13 @@ angular.module('reservationList')
 						reservation.rating = reservation.newRating;
 					});
 			};
+
+			this.cancel = (reservation) => {
+				ReservationService.cancel(reservation.id)
+					.then( () => {
+						let index = this.reservations.indexOf(reservation);
+						this.reservations.splice(index, 1);
+					});
+			};
 		}
 	});

@@ -13,4 +13,7 @@ angular.module('core.reservation')
 		this.rate = (id, rating) => {
 			return $http.put(`${prefix}/api/reservations/${id}/rate/${rating}`);
 		};
+		this.cancel = (id) => {
+			return $http.delete(`${prefix}/api/reservations/${id}`);
+		};
 	});

@@ -64,32 +64,49 @@
 						</span>
 					</p>
 				</div>
-				<div class="card-footer d-flex justify-content-end">
-					<button ng-if="reservation.approved"
-						class="btn btn-custom mr-1"
-						ng-click="$ctrl.comment(reservation)">
+				<div class="card-footer form-row justify-content-end">
+					<button class="btn btn-custom col-auto"
+						ng-if="reservation.approved"
+						ng-click="reservation.showComment  = !reservation.showComment">
 							Leave a comment
 					</button>
-					<form ng-if="reservation.approved && !reservation.rating" class="form-inline mr-1 w-25">
-						<div class="input-group">
-							<input type="number"
-								class="form-control"
-								ng-model="reservation.newRating"
-								placeholder="1-5"
-								required/>
-							<div class="input-group-append">
-								<button class="btn btn-custom"
-									ng-click="$ctrl.rate(reservation)">
-										Rate
-								</button>
+					<form class="col-auto"
+						ng-if="reservation.approved && !reservation.rating">
+							<div class="input-group">
+								<input type="number"
+									class="form-control"
+									ng-model="reservation.newRating"
+									placeholder="N"
+									min="1"
+									max="5"
+									required/>
+								<div class="input-group-append">
+									<button class="btn btn-custom"
+										ng-click="$ctrl.rate(reservation)">
+											Rate
+									</button>
+								</div>
 							</div>
-						</div>
 					</form>
-					<button ng-if="!reservation.approved"
-						class="btn btn-custom mr-1"
+					<button class="btn btn-custom col-auto"
+						ng-if="!reservation.approved"
 						ng-click="$ctrl.cancel(reservation)">
 							Cancel reservation
 					</button>
+				</div>
+				<div class="card-footer" ng-show="reservation.showComment">
+					<form class="form-row align-items-end">
+						<textarea class="form-control col mr-1"
+							rows="3"
+							placeholder="Leave a comment"
+							ng-model="reservation.newComment"
+							required>
+						</textarea>
+						<button class="btn btn-custom col-auto"
+							ng-click="$ctrl.comment(reservation)">
+								Submit
+						</button>
+					</form>
 				</div>
 			</div>
 	</div>
