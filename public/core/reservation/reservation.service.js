@@ -10,4 +10,7 @@ angular.module('core.reservation')
 		this.reserve = (data) => {
 			return $http.post(`${prefix}/api/reservations/`, data);
 		};
+		this.rate = (id, rating) => {
+			return $http.put(`${prefix}/api/reservations/${id}/rate/${rating}`);
+		};
 	});

@@ -8,6 +8,13 @@ angular.module('reservationList')
 				.then( (response) => {
 					this.reservations = response.data;
 				});
+
+			this.rate = (reservation) => {
+				ReservationService.rate(reservation.id, reservation.newRating)
+					.then( (response) => {
+						reservation.lodging.rating = response.data.newRating;
+						reservation.rating = reservation.newRating;
+					});
 			};
 		}
 	});
