@@ -10,7 +10,11 @@
 			ng-class="{active: $index === 0}"
 			ng-repeat="imagePath in $ctrl.imagePaths track by $index">
 				<img class="d-block w-100"
+					ng-if="!imagePath.startsWith('http')"
 					ng-src="{{$ctrl.imageHost}}/{{imagePath}}"/>
+				<img class="d-block w-100"
+					ng-if="imagePath.startsWith('http')"
+					ng-src="{{imagePath}}"/>
 		</div>
 	</div>
 	<a class="carousel-control-prev"
