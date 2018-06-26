@@ -10,7 +10,8 @@
 		class="form-group form-control"
 		placeholder="Password*"
 		ng-model="$ctrl.user.password"
-		minlength="6"
+		minlength="8"
+		pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+"
 		required/>
 	<input type="submit"
 		class="btn btn-custom"

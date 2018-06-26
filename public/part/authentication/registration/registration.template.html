@@ -9,13 +9,15 @@
 		class="form-group form-control"
 		placeholder="Password*"
 		ng-model="$ctrl.user.password"
-		minlength="6"
+		minlength="8"
+		pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+"
 		required/>
 	<input type="password"
 		class="form-group form-control"
 		placeholder="Enter password again*"
 		ng-model="$ctrl.user.passwordAgain"
-		minlength="6"
+		minlength="8"
+		pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+"
 		required/>
 	<input type="text"
 		class="form-group form-control"
