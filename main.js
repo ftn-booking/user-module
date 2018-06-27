@@ -7,4 +7,5 @@ app.use(
 	)
 );
 
+app.disable('x-powered-by');
 app.listen(8095, () => console.log('App listening on port 8095'));
